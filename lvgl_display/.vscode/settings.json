@@ -1,0 +1,31 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "files.associations": {
+    "*.c": "c",
+    "*.txt": "txt",
+    "task.h": "c",
+    "cstdlib": "c",
+    "lvgl.h": "c",
+    "st7789_driver.h": "c",
+    "lv_demos.h": "c",
+    "led_ws2812.h": "c",
+    "charconv": "c",
+    "chrono": "c",
+    "optional": "c",
+    "format": "c",
+    "ratio": "c",
+    "system_error": "c",
+    "array": "c",
+    "functional": "c",
+    "regex": "c",
+    "tuple": "c",
+    "type_traits": "c",
+    "utility": "c",
+    "esp_log.h": "c",
+    "freertos.h": "c",
+    "rmt_rx.h": "c"
+  },
+  "commentTranslate.targetLanguage": "zh-CN",
+  "idf.portWin": "COM24",
+  "idf.flashType": "UART"
+}

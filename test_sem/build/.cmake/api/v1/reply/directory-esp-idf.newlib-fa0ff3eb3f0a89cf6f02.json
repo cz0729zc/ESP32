@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "esp-idf/newlib",
+		"source" : "D:/Development_Tool/ESP32/v5.2.5/esp-idf/components/newlib"
+	}
+}

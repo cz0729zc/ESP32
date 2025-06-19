@@ -1,0 +1,9 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "files.associations": {
+    "gpio.h": "c",
+    "clk_tree_defs.h": "c"
+  },
+  "idf.flashType": "UART",
+  "idf.portWin": "COM24"
+}

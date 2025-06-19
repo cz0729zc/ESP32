@@ -1,0 +1,9 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "idf.flashType": "UART",
+  "idf.portWin": "COM24",
+  "files.associations": {
+    "dht11.h": "c"
+  },
+  "C_Cpp.errorSquiggles": "disabled"
+}
