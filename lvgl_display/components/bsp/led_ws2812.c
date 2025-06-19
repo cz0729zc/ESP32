@@ -1,3 +1,19 @@
+/* 我的理解：zc
+ * 首先在 main 函数中调用 ws2812_init 函数，为 WS2812 操作句柄 handle 配置基本信息，
+ * 包括分配 ws2812_strip_t 结构体内存并初始化其成员（如 LED 数量、GPIO 引脚、RGB 缓冲区等）。
+ *
+ * 然后调用 rmt_new_led_strip_encoder 函数创建一个自定义的 RMT 编码器，并将其赋值给 handle->led_encoder，
+ * 用于控制 WS2812 所需的精确时序。
+ *
+ * 在 rmt_new_led_strip_encoder 函数中，我们创建了自定义编码器结构体，并设置其回调函数：
+ * - .encode = rmt_encode_led_strip
+ * - .del = rmt_del_led_strip_encoder
+ * - .reset = rmt_led_strip_encoder_reset
+ *
+ * 当用户调用 rmt_transmit() 发送数据时，RMT 子系统会自动调用 rmt_encode_led_strip() 函数，
+ * 将 RGB 用户数据编码为 rmt_symbol_word_t 类型的 RMT 符号，从而驱动 WS2812 LED 显示指定颜色。
+ */
+
 /*
  * SPDX-FileCopyrightText: 2021-2022 Espressif Systems (Shanghai) CO LTD
  *

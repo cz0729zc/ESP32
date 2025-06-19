@@ -1,3 +1,22 @@
+/* 我的理解：zc
+ * DHT11.c
+ * 用户调用DHT11_Init()函数,打开rmt接收通道,注册回调函数,使能通道
+ * 然后用户调用DHT11_StartGet()函数，发送DHT11开始信号，并启动RMT接收器以获取数据
+ * 然后rmt通道开启后就会通过rmt_receive函数接收来自DHT11的数据并保存再缓冲区中,
+ * 当数据接收完成后,就调用example_rmt_rx_done_callback()回调函数处理接收到的数据(过程有rmt模块自动完成不需要cpu响应)
+ * 在回调函数中将user_data数据发送数据接收队列rx_receive_queue中,然后再主函数中使用xQueueReceive监听队列获取数据并将数据保存再rx_data中进行处理
+ * 然后再主函数中调用parse_items()函数处理数据
+ * 
+ * 问题及回答：
+ * 问：为什么不在example_rmt_rx_done_callback函数中调用parse_items()进行处理，而是大费周章使用队列传输数据,非要在主函数中调用parse_items()?)
+ * 答：因为example_rmt_rx_done_callback是作为中断服务函数，而parse_items()函数处理需要耗时或需要调度（中断上下文不能做复杂操作（如内存分配、延时、调度等））
+ * 问：为什么要使用队列？
+ * 答：队列用于 在 RMT 接收完成中断回调函数与主任务之间安全地传递数据，实现异步非阻塞的数据解析， 中断上下文和任务上下文之间安全高效地传递 RMT 接收结果，
+ * 避免在中断中做复杂操作，提升系统的稳定性与响应能力。
+ * 
+ * 
+ */
+
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
 #include <driver/rmt_rx.h>
